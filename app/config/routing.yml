@@ -2,6 +2,8 @@ NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix: "/doc"
 
+api_authenticate_check:
+    path: /api/authenticate
 
 api:
     type: rest
