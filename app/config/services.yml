@@ -2,8 +2,34 @@
 # http://symfony.com/doc/current/book/service_container.html
 parameters:
 #    parameter_name: value
+    http.client.args:
+      http_errors: false
 
 services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+  palma_api.event.jwt_created_listener:
+        class: AppBundle\Security\EventListener\JWTCreatedListener
+        arguments: [ '@request_stack' ] # Symfony 2.4+
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
+
+  psr7.factory:
+    class: Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory
+  foundation.factory:
+    class: Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory
+
+  http.client:
+    class: GuzzleHttp\Client
+    arguments: ["%http.client.args%"]
+    public: false
+
+  http.client.adapter:
+    class: Proxy\Adapter\Guzzle\GuzzleAdapter
+    arguments: ["@?http.client"]
+    public: false
+
+  http.proxy:
+    class: Proxy\Proxy
+    arguments: ["@?http.client.adapter"]

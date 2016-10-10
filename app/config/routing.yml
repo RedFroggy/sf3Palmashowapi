@@ -9,3 +9,7 @@ api:
     type: rest
     prefix: "/api"
     resource: "routing_api.yml"
+
+api_micro_service:
+    type: annotation
+    resource : "@AppBundle/Controller/MicroServiceController.php"
