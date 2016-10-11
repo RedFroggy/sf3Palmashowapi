@@ -103,8 +103,8 @@ fos_rest:
     body_listener: true
     format_listener:
         rules:
-            - priorities: [xml, json]
-            - fallback_format: xml
+            - priorities: [json, xml]
+            - fallback_format: json
     param_fetcher_listener: true
     view:
         templating_formats:

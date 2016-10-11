@@ -14,3 +14,16 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+doctrine:
+    dbal:
+        path: "%kernel.root_dir%/data/palmashow_test.sqlite"
+
+parameters:
+  local_test_api:
+    base_uri: http://localhost:8000/app_acceptance.php/
+
+services:
+  behat.http.client:
+    class: GuzzleHttp\Client
+    arguments: ["%local_test_api%"]

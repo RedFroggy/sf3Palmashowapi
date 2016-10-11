@@ -72,7 +72,7 @@ class DvdController extends Controller
      */
     public function postDvdAction(Request $request)
     {
-        $form = $this->createForm(new DvdType());
+        $form = $this->createForm('AppBundle\Form\DvdType');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
