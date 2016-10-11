@@ -66,6 +66,9 @@
         ],
         "post-update-cmd": [
             "@symfony-scripts"
+        ],
+		"compile": [
+            "rm web/app_dev.php"
         ]
     },
     "extra": {
